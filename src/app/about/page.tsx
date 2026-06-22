@@ -86,22 +86,29 @@ export default function About() {
       <NavBar />
 
       {/* Intro */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-4xl px-6 pb-16 pt-4 sm:pb-20">
-          <p className="font-mono text-xs uppercase tracking-[0.15em] text-mint">
-            about
-          </p>
-          <h1 className="mt-4 max-w-2xl text-balance font-display text-2xl font-semibold leading-tight text-text sm:text-4xl">
+      <section className="relative border-b border-border/40">
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="mx-auto max-w-4xl px-6 pb-16 pt-8 sm:pb-24 sm:pt-12">
+          <div className="mb-6 flex items-center gap-3">
+            <span className="h-px w-8 bg-mint/50"></span>
+            <p className="font-mono text-xs uppercase tracking-[0.15em] text-mint drop-shadow-[0_0_8px_rgba(110,231,183,0.4)]">
+              about
+            </p>
+          </div>
+          <h1 className="mt-4 max-w-3xl text-balance font-display text-4xl font-semibold tracking-tight leading-[1.1] text-text sm:text-5xl">
             Motivated DevOps engineer, built on real production systems.
           </h1>
-          <p className="mt-5 max-w-xl text-balance leading-relaxed text-text-muted">
+          <p className="mt-6 max-w-2xl text-balance text-lg leading-relaxed text-text-muted">
             I work across CI/CD, cloud infrastructure, and containerization —
             and I care about the full path from a commit to something running
             reliably in production. Based in Tunisia, finishing my Master&apos;s
             in Information Systems Engineering.
           </p>
-          <div className="mt-6 flex flex-wrap gap-4 font-mono text-xs text-text-muted">
-            <a href="mailto:adammheni5@gmail.com" className="hover:text-mint">
+          <div className="mt-8 flex flex-wrap gap-4 font-mono text-[13px] text-text-muted">
+            <a
+              href="mailto:adammheni5@gmail.com"
+              className="hover:text-mint transition-colors"
+            >
               adammheni5@gmail.com
             </a>
             <span className="text-border">/</span>
@@ -112,40 +119,45 @@ export default function About() {
           <a
             href="/adam-mheni-resume.pdf"
             download
-            className="mt-7 inline-flex items-center gap-2 rounded-lg bg-mint px-5 py-2.5 text-sm font-medium text-bg transition-opacity hover:opacity-90"
+            className="mt-10 inline-flex items-center gap-2 rounded-lg bg-mint px-6 py-3 text-sm font-semibold text-bg transition-all hover:bg-mint-dim hover:shadow-[0_0_20px_rgba(110,231,183,0.4)]"
           >
-            Download résumé
+            Download r{'\u00E9'}sum{'\u00E9'}
           </a>
         </div>
       </section>
 
       {/* Experience */}
-      <section className="mx-auto max-w-4xl px-6 py-16 sm:py-20">
-        <h2 className="font-display text-xl font-semibold text-text sm:text-2xl">
+      <section className="mx-auto max-w-4xl px-6 py-16 sm:py-24">
+        <h2 className="font-display text-2xl font-semibold tracking-tight text-text sm:text-3xl">
           Experience
         </h2>
-        <div className="mt-8 space-y-10">
+        <div className="mt-10 space-y-12">
           {experience.map((job) => (
             <div
               key={job.role + job.org}
-              className="border-l border-border pl-6"
+              className="group relative border-l-2 border-border/40 pl-6 transition-colors hover:border-mint/30"
             >
-              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                <h3 className="font-display text-base font-semibold text-text">
+              {/* Glowing dot indicator */}
+              <div className="absolute -left-[5px] top-1.5 h-2 w-2 rounded-full border border-surface bg-surface transition-colors group-hover:bg-mint group-hover:shadow-[0_0_8px_rgba(110,231,183,0.8)]" />
+
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+                <h3 className="font-display text-lg font-semibold text-text">
                   {job.role}{' '}
-                  <span className="text-text-muted">— {job.org}</span>
+                  <span className="text-text-muted font-normal">
+                    — {job.org}
+                  </span>
                 </h3>
-                <span className="font-mono text-xs text-text-faint">
+                <span className="font-mono text-xs font-medium text-text-faint/80 uppercase tracking-widest">
                   {job.period}
                 </span>
               </div>
-              <ul className="mt-3 space-y-2">
+              <ul className="mt-4 space-y-3">
                 {job.points.map((point) => (
                   <li
                     key={point}
-                    className="flex gap-2 text-sm leading-relaxed text-text-muted"
+                    className="flex gap-3 text-[15px] leading-relaxed text-text-muted"
                   >
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-mint" />
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-mint/40" />
                     {point}
                   </li>
                 ))}
@@ -156,22 +168,23 @@ export default function About() {
       </section>
 
       {/* Skills */}
-      <section className="border-t border-border bg-surface/40">
-        <div className="mx-auto max-w-4xl px-6 py-16 sm:py-20">
-          <h2 className="font-display text-xl font-semibold text-text sm:text-2xl">
+      <section className="relative border-t border-border/40 bg-surface/20">
+        <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        <div className="mx-auto max-w-4xl px-6 py-16 sm:py-24">
+          <h2 className="font-display text-2xl font-semibold tracking-tight text-text sm:text-3xl">
             Technical skills
           </h2>
-          <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+          <div className="mt-10 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {skillGroups.map((group) => (
-              <div key={group.label}>
-                <h3 className="font-mono text-xs uppercase tracking-wide text-text-faint">
+              <div key={group.label} className="group">
+                <h3 className="font-mono text-[11px] font-semibold uppercase tracking-[0.15em] text-text-faint transition-colors group-hover:text-mint">
                   {group.label}
                 </h3>
-                <div className="mt-2 flex flex-wrap gap-2">
+                <div className="mt-4 flex flex-wrap gap-2">
                   {group.items.map((item) => (
                     <span
                       key={item}
-                      className="rounded-md border border-border bg-card px-2.5 py-1 font-mono text-xs text-text-muted"
+                      className="rounded-md border border-border/50 bg-card/60 px-3 py-1.5 font-mono text-[11px] text-text-muted transition-colors hover:border-mint/40 hover:text-text backdrop-blur-sm"
                     >
                       {item}
                     </span>
@@ -184,18 +197,25 @@ export default function About() {
       </section>
 
       {/* Education + Certs */}
-      <section className="mx-auto max-w-4xl px-6 py-16 sm:py-20">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2">
+      <section className="mx-auto max-w-4xl px-6 py-16 pb-24 sm:py-24 sm:pb-32">
+        <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
           <div>
-            <h2 className="font-display text-xl font-semibold text-text">
+            <h2 className="font-display text-2xl font-semibold tracking-tight text-text sm:text-3xl">
               Education
             </h2>
-            <div className="mt-6 space-y-6">
+            <div className="mt-10 space-y-10">
               {education.map((ed) => (
-                <div key={ed.degree}>
-                  <h3 className="text-sm font-medium text-text">{ed.degree}</h3>
-                  <p className="mt-1 text-sm text-text-muted">{ed.school}</p>
-                  <p className="mt-1 font-mono text-xs text-text-faint">
+                <div
+                  key={ed.degree}
+                  className="group border-l-2 border-border/40 pl-5 transition-colors hover:border-blue/40"
+                >
+                  <h3 className="font-display text-base font-semibold text-text group-hover:text-blue transition-colors">
+                    {ed.degree}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-text-muted">
+                    {ed.school}
+                  </p>
+                  <p className="mt-3 font-mono text-[11px] font-medium text-text-faint/80 uppercase tracking-widest">
                     {ed.period}
                   </p>
                 </div>
@@ -204,29 +224,39 @@ export default function About() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl font-semibold text-text">
+            <h2 className="font-display text-2xl font-semibold tracking-tight text-text sm:text-3xl">
               Certifications
             </h2>
-            <div className="mt-6 space-y-5">
+            <div className="mt-10 space-y-6">
               {certifications.map((cert) => (
-                <div key={cert.name}>
-                  <h3 className="text-sm font-medium text-text">{cert.name}</h3>
-                  <p className="mt-1 font-mono text-xs text-text-faint">
+                <div
+                  key={cert.name}
+                  className="group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 border-b border-border/40 pb-6 transition-colors hover:border-mint/30"
+                >
+                  <h3 className="text-[15px] font-medium text-text group-hover:text-mint transition-colors">
+                    {cert.name}
+                  </h3>
+                  <p className="shrink-0 font-mono text-[11px] font-medium text-text-faint/80 uppercase tracking-widest">
                     {cert.date}
                   </p>
                 </div>
               ))}
             </div>
 
-            <h2 className="mt-10 font-display text-xl font-semibold text-text">
+            <h2 className="mt-16 font-display text-xl font-semibold tracking-tight text-text sm:text-2xl">
               Languages
             </h2>
-            <div className="mt-4 flex flex-wrap gap-2 font-mono text-xs text-text-muted">
-              <span>Arabic — native</span>
-              <span className="text-border">/</span>
-              <span>English — advanced</span>
-              <span className="text-border">/</span>
-              <span>French — intermediate</span>
+            <div className="mt-6 flex flex-wrap items-center gap-3 font-mono text-xs text-text-muted">
+              <span className="rounded-full border border-border/50 bg-surface/50 px-3 py-1 text-text">
+                Arabic <span className="text-text-faint ml-1">native</span>
+              </span>
+              <span className="rounded-full border border-border/50 bg-surface/50 px-3 py-1 text-text">
+                English <span className="text-text-faint ml-1">advanced</span>
+              </span>
+              <span className="rounded-full border border-border/50 bg-surface/50 px-3 py-1 text-text">
+                French{' '}
+                <span className="text-text-faint ml-1">intermediate</span>
+              </span>
             </div>
           </div>
         </div>

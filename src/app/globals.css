@@ -41,7 +41,14 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
+  /* Typography enhancements */
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-mint-dim);
+  color: var(--color-bg);
 }
 
 a:focus-visible,
