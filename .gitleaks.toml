@@ -1,0 +1,9 @@
+title = "Next starter gitleaks config"
+
+[allowlist]
+description = "Generated files and local deps"
+paths = [
+  '''.gitleaks.toml''',
+  '''node_modules''',
+  '''.next''',
+]

@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+gitleaks protect --staged --redact --config=.gitleaks.toml
+npx lint-staged
