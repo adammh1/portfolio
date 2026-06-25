@@ -33,4 +33,5 @@ export interface Project {
   repoUrl?: string;
   demoUrl?: string;
   content: string; // parsed markdown body
+  date: string; // ISO date string
 }

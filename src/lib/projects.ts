@@ -35,6 +35,8 @@ export const getAllProjects = cache((): Project[] => {
       screenshots: data.screenshots ?? [], // ← ADD THIS
       repoUrl: data.repoUrl,
       demoUrl: data.demoUrl,
+      description: data.description,
+      date: data.date,
       content,
     };
   });
