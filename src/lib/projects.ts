@@ -27,13 +27,14 @@ export const getAllProjects = cache((): Project[] => {
       title: data.title,
       tagline: data.tagline,
       status: data.status,
-      featured: Boolean(data.featured),
+      featured: data.featured,
+      tags: data.tags ?? [],
       stack: data.stack ?? [],
       metrics: data.metrics ?? [],
       coverImage: data.coverImage,
-      repoUrl: data.repoUrl ?? undefined,
-      demoUrl: data.demoUrl ?? undefined,
-      date: data.date,
+      screenshots: data.screenshots ?? [], // ← ADD THIS
+      repoUrl: data.repoUrl,
+      demoUrl: data.demoUrl,
       content,
     };
   });

@@ -1,21 +1,36 @@
-import type { Status } from '@/components/StatusPill';
-
-export type ProjectMetric = {
-  label: string;
+// src/lib/types.ts
+export type ProjectStatus =
+  | 'deployed'
+  | 'in-progress'
+  | 'demo-pending'
+  | 'archived'
+  | 'live'
+  | 'completed'
+  | 'paused'
+  | 'cancelled';
+export interface ProjectMetric {
   value: string;
-};
+  label: string;
+}
 
-export type Project = {
+export interface ProjectScreenshot {
+  src: string;
+  caption: string;
+}
+
+export interface Project {
   slug: string;
   title: string;
   tagline: string;
-  status: Status;
+  description: string; // short — used on project cards
+  status: ProjectStatus;
   featured: boolean;
-  stack: string[];
+  tags: string[]; // short list shown on cards
+  stack: string[]; // full list shown on detail page
   metrics?: ProjectMetric[];
-  coverImage: string;
+  screenshots?: ProjectScreenshot[];
+  coverImage?: string;
   repoUrl?: string;
   demoUrl?: string;
-  date: string;
-  content: string;
-};
+  content: string; // parsed markdown body
+}

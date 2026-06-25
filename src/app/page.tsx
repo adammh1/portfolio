@@ -1,41 +1,96 @@
+// src/app/page.tsx
 import NavBar from '@/components/NavBar';
 import ProjectCard from '@/components/ProjectCard';
-import TerminalHero from '@/components/TerminalHero';
+import HeroSection from '@/components/HeroSection';
+import StackCloud from '@/components/StackCloud';
 import { getAllProjects } from '@/lib/projects';
 
 export default function Home() {
   const projects = getAllProjects();
-  const featured = projects.find((p) => p.featured);
-  const rest = projects.filter((p) => p.slug !== featured?.slug);
+  const featured = projects.filter((p) => p.featured);
+  const rest = projects.filter((p) => !p.featured);
 
   return (
-    <main className="relative min-h-screen">
-      {/* Seamless background grid */}
-      <div className="absolute inset-0 -z-50 h-full w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+    <main className="relative min-h-screen overflow-x-hidden bg-bg text-text">
+      <div className="absolute inset-0 -z-50 bg-[radial-gradient(circle_at_top,_rgba(74,222,128,0.08),_transparent_35%),linear-gradient(to_right,#1e2a4210_1px,transparent_1px),linear-gradient(to_bottom,#1e2a4210_1px,transparent_1px)] bg-[size:100%_100%,24px_24px,24px_24px]" />
 
       <NavBar />
 
-      {/* Hero */}
-      <section className="mx-auto max-w-4xl px-6 pb-20 pt-20 sm:pb-28 sm:pt-24">
-        <TerminalHero />
+      <section id="home" className="mx-auto max-w-6xl px-6 pb-14 pt-14 lg:px-8">
+        <HeroSection />
       </section>
 
-      {/* Projects */}
-      <section id="projects" className="border-t border-border/50 relative">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="mx-auto max-w-4xl px-6 py-16 sm:py-20">
-          <h2 className="font-display text-lg font-semibold text-text">
-            Projects
-          </h2>
+      <section id="skills" className="mx-auto max-w-6xl px-6 py-6 lg:px-8">
+        <StackCloud />
+      </section>
 
-          <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
-            {featured && <ProjectCard project={featured} featured />}
-            {rest.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
+      <section id="projects" className="mx-auto max-w-6xl px-6 py-14 lg:px-8">
+        <div className="mb-8 flex items-end justify-between gap-4">
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-mint">
+              Featured Work
+            </p>
+            <h2 className="mt-2 font-display text-2xl font-semibold sm:text-3xl">
+              Projects that showcase my skills and experience
+            </h2>
+          </div>
+          <span className="font-mono text-[11px] text-text-faint">
+            {projects.length.toString().padStart(2, '0')} total
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {featured.map((project) => (
+            <ProjectCard key={project.slug} project={project} featured />
+          ))}
+          {rest.map((project) => (
+            <ProjectCard key={project.slug} project={project} />
+          ))}
+        </div>
+      </section>
+
+      <section id="contact" className="mx-auto max-w-6xl px-6 py-14 lg:px-8">
+        <div className="grid gap-4 rounded-2xl border border-border/70 bg-card/40 p-6 backdrop-blur-sm lg:grid-cols-[1.2fr_0.8fr]">
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-mint">
+              Contact
+            </p>
+            <h2 className="mt-2 font-display text-2xl font-semibold sm:text-3xl">
+              Let’s build something reliable
+            </h2>
+            <p className="mt-3 max-w-xl leading-relaxed text-text-muted">
+              Available for DevOps, cloud automation, Kubernetes, CI/CD, and
+              platform engineering work.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 lg:justify-end">
+            <a
+              href="mailto:you@example.com"
+              className="rounded-lg bg-mint px-5 py-3 text-sm font-medium text-bg transition-opacity hover:opacity-90"
+            >
+              Send email
+            </a>
+            <a
+              href="https://github.com/your-github"
+              className="rounded-lg border border-border px-5 py-3 text-sm font-medium text-text transition-colors hover:border-mint/40"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://linkedin.com/in/your-linkedin"
+              className="rounded-lg border border-border px-5 py-3 text-sm font-medium text-text transition-colors hover:border-mint/40"
+            >
+              LinkedIn
+            </a>
           </div>
         </div>
       </section>
+
+      <footer className="mx-auto flex max-w-6xl items-center justify-between border-t border-border/60 px-6 py-6 text-[11px] text-text-faint lg:px-8">
+        <span>© 2026 Adam Mheni</span>
+        {/* <span className="font-mono">Optimized for production</span> */}
+      </footer>
     </main>
   );
 }

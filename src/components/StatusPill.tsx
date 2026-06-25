@@ -1,6 +1,19 @@
-type Status = 'deployed' | 'archived' | 'demo-pending' | 'in-progress';
+'use client';
 
-const statusConfig = {
+type Status =
+  | 'deployed'
+  | 'in-progress'
+  | 'demo-pending'
+  | 'archived'
+  | 'live'
+  | 'completed'
+  | 'paused'
+  | 'cancelled';
+
+const statusConfig: Record<
+  Status,
+  { label: string; dot: string; text: string }
+> = {
   deployed: {
     label: 'deployed',
     dot: 'bg-mint',
@@ -8,11 +21,11 @@ const statusConfig = {
   },
   'in-progress': {
     label: 'in progress',
-    dot: 'bg-blue',
-    text: 'text-blue',
+    dot: 'bg-sky-400',
+    text: 'text-sky-400',
   },
   'demo-pending': {
-    label: 'demo: pending',
+    label: 'demo pending',
     dot: 'bg-text-faint',
     text: 'text-text-muted',
   },
@@ -21,21 +34,41 @@ const statusConfig = {
     dot: 'bg-text-faint',
     text: 'text-text-faint',
   },
-} satisfies Record<Status, { label: string; dot: string; text: string }>;
+  live: {
+    label: 'live',
+    dot: 'bg-green-400',
+    text: 'text-green-400',
+  },
+  completed: {
+    label: 'completed',
+    dot: 'bg-blue-400',
+    text: 'text-blue-400',
+  },
+  paused: {
+    label: 'paused',
+    dot: 'bg-yellow-400',
+    text: 'text-yellow-400',
+  },
+  cancelled: {
+    label: 'cancelled',
+    dot: 'bg-red-400',
+    text: 'text-red-400',
+  },
+};
 
-const fallback = statusConfig['in-progress'];
+function isStatus(value: unknown): value is Status {
+  return typeof value === 'string' && value in statusConfig;
+}
 
-export default function StatusPill({ status }: { status?: Status | null }) {
-  const cfg = status ? (statusConfig[status] ?? fallback) : fallback;
+export default function StatusPill({ status }: { status?: string | null }) {
+  const cfg = isStatus(status)
+    ? statusConfig[status]
+    : statusConfig['in-progress'];
 
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-border/50 bg-surface/50 px-2.5 py-1 font-mono text-[11px] leading-none shadow-sm backdrop-blur-sm">
-      <span
-        className={`h-1.5 w-1.5 rounded-full ${cfg.dot} ${status === 'deployed' ? 'animate-pulse shadow-[0_0_8px_rgba(110,231,183,0.8)]' : ''}`}
-      />
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-surface/60 px-2.5 py-1 font-mono text-[11px]">
+      <span className={`h-1.5 w-1.5 rounded-full ${cfg.dot}`} />
       <span className={cfg.text}>{cfg.label}</span>
     </span>
   );
 }
-
-export type { Status };
