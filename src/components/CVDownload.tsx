@@ -1,10 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useLang } from '@/hooks/useLang';
 
 export default function CVDownload() {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  const { t } = useLang();
 
   useEffect(() => {
     function handleOutside(e: MouseEvent) {
@@ -60,7 +62,7 @@ export default function CVDownload() {
             d="M12 15V3m0 12-4-4m4 4 4-4M2 17l.6 2.4A2 2 0 004.5 21h15a2 2 0 002-1.5L22 17"
           />
         </svg>
-        Resume
+        {t('cv_btn')}
       </button>
 
       {open && (
@@ -79,10 +81,10 @@ export default function CVDownload() {
         >
           <div className="border-b border-border px-5 py-4">
             <p className="font-mono text-[11px] tracking-[0.2em] text-mint">
-              DOWNLOAD
+              {t('cv_panel_title')}
             </p>
 
-            <p className="mt-2 text-sm text-text-muted">Select your language</p>
+            <p className="mt-2 text-sm text-text-muted">{t('cv_panel_body')}</p>
           </div>
 
           <div className="p-2">
@@ -96,7 +98,7 @@ export default function CVDownload() {
                 hover:bg-surface
               "
             >
-              <span>🇬🇧 English</span>
+              <span>{t('cv_english')}</span>
 
               <span className="opacity-50 group-hover:translate-x-1 transition">
                 →
@@ -113,7 +115,7 @@ export default function CVDownload() {
                 hover:bg-surface
               "
             >
-              <span>🇫🇷 Français</span>
+              <span>{t('cv_french')}</span>
 
               <span className="opacity-50 group-hover:translate-x-1 transition">
                 →

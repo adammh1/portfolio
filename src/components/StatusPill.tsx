@@ -1,5 +1,7 @@
 'use client';
 
+import { useLang } from '@/hooks/useLang';
+
 type Status =
   | 'deployed'
   | 'in-progress'
@@ -61,14 +63,28 @@ function isStatus(value: unknown): value is Status {
 }
 
 export default function StatusPill({ status }: { status?: string | null }) {
+  const { t } = useLang();
   const cfg = isStatus(status)
     ? statusConfig[status]
     : statusConfig['in-progress'];
 
+  const labelMap: Record<Status, string> = {
+    deployed: t('status_deployed'),
+    'in-progress': t('status_in_progress'),
+    'demo-pending': t('status_demo_pending'),
+    archived: t('status_archived'),
+    live: t('status_live'),
+    completed: t('status_completed'),
+    paused: t('status_paused'),
+    cancelled: t('status_cancelled'),
+  };
+
   return (
     <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-surface/60 px-2.5 py-1 font-mono text-[11px]">
       <span className={`h-1.5 w-1.5 rounded-full ${cfg.dot}`} />
-      <span className={cfg.text}>{cfg.label}</span>
+      <span className={cfg.text}>
+        {labelMap[isStatus(status) ? status : 'in-progress']}
+      </span>
     </span>
   );
 }

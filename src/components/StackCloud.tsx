@@ -1,6 +1,8 @@
 // src/components/StackCloud.tsx
 'use client';
 
+import { useLang } from '@/hooks/useLang';
+
 const groups = [
   {
     title: 'Infrastructure',
@@ -40,18 +42,19 @@ const groups = [
 ];
 
 export default function StackCloud() {
+  const { t } = useLang();
+
   return (
     <section className="relative">
       {/* ambient glow background */}
       <div className="pointer-events-none absolute -top-24 left-1/2 h-[320px] w-[700px] -translate-x-1/2 rounded-full bg-mint/10 blur-[120px]" />
 
       <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-mint">
-        Technical Competencies
+        {t('stack_title')}
       </p>
 
       <p className="mt-3 max-w-3xl text-sm leading-7 text-text-muted sm:text-base">
-        A focused grouping of tools I use to automate delivery, operate cloud
-        workloads, and keep systems observable.
+        {t('stack_description')}
       </p>
 
       <div className="mt-8 grid gap-4 lg:grid-cols-2">

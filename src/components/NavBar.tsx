@@ -2,8 +2,12 @@
 'use client';
 
 import CVDownload from '@/components/CVDownload';
+import LanguageSwitch from '@/components/LanguageSwitch';
+import { useLang } from '@/hooks/useLang';
 import Link from 'next/link';
 export default function NavBar() {
+  const { t } = useLang();
+
   return (
     <nav className="sticky top-0 z-50 border-b border-border/60 bg-bg/85 backdrop-blur-md">
       <div className="mx-auto flex h-[64px] max-w-6xl items-center justify-between px-6 lg:px-8">
@@ -21,7 +25,7 @@ export default function NavBar() {
                 className="font-mono text-[11px] tracking-[0.18em] text-text-muted hover:text-text"
                 href="#skills"
               >
-                SKILLS
+                {t('nav_skills')}
               </Link>
             </li>
             <li>
@@ -29,7 +33,7 @@ export default function NavBar() {
                 className="font-mono text-[11px] tracking-[0.18em] text-text-muted hover:text-text"
                 href="#projects"
               >
-                PROJECTS
+                {t('nav_projects')}
               </Link>
             </li>
             <li>
@@ -37,11 +41,12 @@ export default function NavBar() {
                 className="font-mono text-[11px] tracking-[0.18em] text-text-muted hover:text-text"
                 href="#contact"
               >
-                CONTACT
+                {t('nav_contact')}
               </Link>
             </li>
           </ul>
 
+          <LanguageSwitch />
           <CVDownload />
         </div>
       </div>

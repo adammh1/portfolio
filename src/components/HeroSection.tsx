@@ -1,20 +1,25 @@
 // src/components/HeroSection.tsx
 
+'use client';
+
+import { useLang } from '@/hooks/useLang';
+
 export default function HeroSection() {
+  const { t } = useLang();
+
   return (
     <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
       <div>
         <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-mint">
-          DevOps Engineer | Cloud Automation | Kubernetes
+          {t('hero_role')}
         </p>
 
         <h1 className="mt-4 max-w-2xl text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
-          I build infrastructure that ships cleanly.
+          {t('hero_title')}
         </h1>
 
         <p className="mt-5 max-w-xl text-base leading-7 text-text-muted sm:text-lg">
-          I design cloud-native systems, automate delivery pipelines, and
-          improve reliability across AWS, Kubernetes, and CI/CD platforms.
+          {t('hero_body')}
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
@@ -22,13 +27,13 @@ export default function HeroSection() {
             href="#projects"
             className="rounded-lg bg-mint px-5 py-3 text-sm font-medium text-bg transition-opacity hover:opacity-90"
           >
-            View Projects
+            {t('hero_primary')}
           </a>
           <a
             href="#contact"
             className="rounded-lg border border-border px-5 py-3 text-sm font-medium text-text transition-colors hover:border-mint/40"
           >
-            Contact Me
+            {t('hero_secondary')}
           </a>
         </div>
 

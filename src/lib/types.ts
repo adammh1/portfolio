@@ -1,4 +1,6 @@
 // src/lib/types.ts
+import type { Lang } from './i18n';
+
 export type ProjectStatus =
   | 'deployed'
   | 'in-progress'
@@ -33,5 +35,6 @@ export interface Project {
   repoUrl?: string;
   demoUrl?: string;
   content: string; // parsed markdown body
+  contentByLang?: Partial<Record<Lang, string>>;
   date: string; // ISO date string
 }

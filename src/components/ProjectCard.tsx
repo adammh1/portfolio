@@ -3,6 +3,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLang } from '@/hooks/useLang';
+import { getProjectCopy } from '@/lib/i18n';
 import type { Project } from '@/lib/types';
 import StatusPill from './StatusPill';
 
@@ -13,6 +15,12 @@ export default function ProjectCard({
   project: Project;
   featured?: boolean;
 }) {
+  const { lang, t } = useLang();
+  const copy = getProjectCopy(project.slug, lang) ?? {
+    title: project.title,
+    tagline: project.tagline,
+  };
+
   return (
     <Link
       href={`/projects/${project.slug}`}
@@ -38,19 +46,19 @@ export default function ProjectCard({
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-mint/80">
-              {project.featured ? 'Featured Project' : 'Project'}
+              {project.featured ? t('project_featured') : t('project_single')}
             </p>
             <h3
               className={`mt-2 font-display font-semibold text-text ${featured ? 'text-2xl' : 'text-xl'}`}
             >
-              {project.title}
+              {copy.title}
             </h3>
           </div>
           <StatusPill status={project.status} />
         </div>
 
         <p className="mt-3 max-w-2xl text-sm leading-7 text-text-muted">
-          {project.tagline}
+          {copy.tagline}
         </p>
 
         <div className="mt-5 flex flex-wrap gap-2">
