@@ -82,11 +82,12 @@ export const getAllProjects = cache((): Project[] => {
         !data.title ||
         !data.tagline ||
         !data.status ||
-        typeof data.featured !== 'boolean' ||
-        !data.date
+        typeof data.featured !== 'boolean'
       ) {
         throw new Error(`Incomplete frontmatter for project ${slug}`);
       }
+
+      const date = data.date ?? '1970-01-01';
 
       return {
         slug,
@@ -102,7 +103,7 @@ export const getAllProjects = cache((): Project[] => {
         repoUrl: data.repoUrl,
         demoUrl: data.demoUrl,
         description: data.description ?? data.tagline,
-        date: data.date,
+        date,
         content: english?.content ?? fallback.content,
         contentByLang: {
           en: localizedFiles.en?.content,
